@@ -93,7 +93,7 @@ class NicovideoAPIWrapper
     p @flv_info
     get_waybackkey(@flv_info[:thread_id])
     p @wayback_key
-    exit
+    #exit
 
 
     #p flv_info
@@ -108,9 +108,21 @@ class NicovideoAPIWrapper
     #p flv_info
     msg_server_url = URI.unescape( @flv_info[:ms] ).gsub("/api/", "")
     thread_id      = @flv_info[:thread_id]
-    movie_info_url = "#{msg_server_url}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}&when=#{when_time}&waybackkey=#{@flv_info[:userkey]}"
-    p  movie_info_url
-    JSON.load( open(movie_info_url).read )
+
+    host_info = msg_server_url.split('/')
+    p host_info
+    host = host_info[2]
+    root_path = host_info[3]
+    path = "/#{root_path}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}&when=#{when_time}&waybackkey=#{@wayback_key}"
+
+    p path
+    response = Net::HTTP.new(host).start { |http|
+      request = Net::HTTP::Get.new(path)
+      request['cookie'] = "user_session=#{@session_id};nicosid=#{@nicosid}"
+      http.request(request)
+    }
+
+    JSON.load(response.body)
   end
 
 
