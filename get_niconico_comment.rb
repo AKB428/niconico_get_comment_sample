@@ -101,4 +101,6 @@ Dir.mkdir(DST_DIR) unless File.exists?(DST_DIR)
 nico = NicovideoAPIWrapper.new
 nico.login(NICO_MAIL, NICO_PASS)
 comments = nico.get_comments(MOVIE_ID, 1000)
-save_array(comments, "#{DST_DIR}/#{MOVIE_ID}_comments.csv")
+
+time_st = Time.now.strftime("%Y%m%d-%H%M%S")
+save_array(comments, "#{DST_DIR}/#{MOVIE_ID}_#{time_st}_comments.csv")
