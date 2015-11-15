@@ -4,7 +4,12 @@ require 'net/https'
 
 #https://gist.github.com/mpppk/118a3dcf93324429fb1e
 #ref http://blog.livedoor.jp/mgpn/archives/51886270.html
+
 class NicovideoAPIWrapper
+
+  COMMENT_MAX_NUM = 1000
+  @flv_info = nil
+
   def login(mail, password)
     #ログインを試みる
     https = Net::HTTP.new('secure.nicovideo.jp', 443)
@@ -17,6 +22,7 @@ class NicovideoAPIWrapper
     #set-cookieには複数のcookieが設定されている。
     #user_sessionがdeletedでない最初のcookieを探す。
     user_session = nil
+    nicosid = nil
     response.get_fields('set-cookie').each {|cookie|
       cookie.split('; ').each {|param|
         pair = param.split('=')
@@ -27,7 +33,21 @@ class NicovideoAPIWrapper
       }
       break unless user_session.nil?
     }
+
+    response.get_fields('set-cookie').each {|cookie|
+      cookie.split('; ').each {|param|
+        pair = param.split('=')
+        if pair[0] == 'nicosid' then
+          nicosid = pair[1]
+          break
+        end
+      }
+      break unless nicosid.nil?
+    }
+    @nicosid = nicosid
     @session_id = user_session
+    p @nicosid
+    p user_session
     return user_session
   end
 
@@ -53,23 +73,77 @@ class NicovideoAPIWrapper
     return flv_info
   end
 
+  def get_waybackkey(thread_id)
+    host = 'flapi.nicovideo.jp'
+    path = "/api/getwaybackkey?thread=#{thread_id}"
+    p path
+    response = Net::HTTP.new(host).start { |http|
+      request = Net::HTTP::Get.new(path)
+      request['cookie'] = "user_session=#{@session_id}"
+      http.request(request)
+    }
+    p response
+    @wayback_key = response.body.split('=')[1]
+  end
+
+
   # 与えられた動画IDの情報を返す
-  def get_movie_info(movie_id, max_num = 100)
-    flv_info       = get_flv_info(movie_id)
-    msg_server_url = URI.unescape( flv_info[:ms] ).gsub("/api/", "")
-    thread_id      = flv_info[:thread_id]
-    movie_info_url = "#{msg_server_url}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{max_num}"
+  def get_movie_info(movie_id)
+    @flv_info       = get_flv_info(movie_id)
+    p @flv_info
+    get_waybackkey(@flv_info[:thread_id])
+    p @wayback_key
+    exit
+
+
+    #p flv_info
+    msg_server_url = URI.unescape( @flv_info[:ms] ).gsub("/api/", "")
+    thread_id      = @flv_info[:thread_id]
+    movie_info_url = "#{msg_server_url}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}"
     JSON.load( open(movie_info_url).read )
   end
 
+  # 与えられた動画IDの情報を返す
+  def get_movie_info_with_when(movie_id, when_time)
+    #p flv_info
+    msg_server_url = URI.unescape( @flv_info[:ms] ).gsub("/api/", "")
+    thread_id      = @flv_info[:thread_id]
+    movie_info_url = "#{msg_server_url}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}&when=#{when_time}&waybackkey=#{@flv_info[:userkey]}"
+    p  movie_info_url
+    JSON.load( open(movie_info_url).read )
+  end
+
+
   # 与えられた動画IDのコメント情報を返す
-  def get_comments_info(movie_id, max_num = 100)
-    movie_info =  get_movie_info(movie_id, max_num)
+  def get_comments_info(movie_id)
+    movie_info =  get_movie_info(movie_id)
+
+    comment_num = movie_info[0]['thread']['last_res']
+    p comment_num
+    loop_num = comment_num / COMMENT_MAX_NUM
+    p loop_num
+    p (comment_num % COMMENT_MAX_NUM)
+    loop_num = loop_num + 1 if (comment_num % COMMENT_MAX_NUM) > 0
+    p loop_num
+
     comments_info = []
-    movie_info.each do |v|
-      p v
-      comments_info << v["chat"] if v.has_key?("chat")
+
+    (1..loop_num).each do |num|
+      next_when = nil
+      puts 'loop=' + num.to_s + ' length=' + movie_info.length.to_s
+      movie_info.each do |v|
+        #p v
+        if next_when.nil? && v.has_key?("chat")
+          next_when = v["chat"]['date']
+        end
+
+        comments_info << v["chat"] if v.has_key?("chat")
+      end
+
+      p next_when
+      movie_info = get_movie_info_with_when(movie_id, next_when)
     end
+
     comments_info
   end
 
@@ -79,8 +153,8 @@ class NicovideoAPIWrapper
   end
 
   # 与えられた動画IDからコメントを返す
-  def get_comments(movie_id, max_num = 100)
-    comments_info = get_comments_info(movie_id, max_num)
+  def get_comments(movie_id)
+    comments_info = get_comments_info(movie_id)
     extract_comments(comments_info)
   end
 end
@@ -100,7 +174,7 @@ Dir.mkdir(DST_DIR) unless File.exists?(DST_DIR)
 
 nico = NicovideoAPIWrapper.new
 nico.login(NICO_MAIL, NICO_PASS)
-comments = nico.get_comments(MOVIE_ID, 1000)
+comments = nico.get_comments(MOVIE_ID)
 
 time_st = Time.now.strftime("%Y%m%d-%H%M%S")
 save_array(comments, "#{DST_DIR}/#{MOVIE_ID}_#{time_st}_comments.csv")
