@@ -11,3 +11,7 @@
 {"chat"=>{"thread"=>1444481838, "no"=>33315, "vpos"=>8938, "date"=>1446732635, "mail"=>"pink 184", "user_id"=>"NWc5i7twOD1T1Sh3_1FProv4xqk", "anonymity"=>1, "leaf"=>1, "content"=>"さあ"}}
 {"chat"=>{"thread"=>1444481838, "no"=>33316, "vpos"=>502, "date"=>1446732644, "mail"=>"pink 184", "user_id"=>"NWc5i7twOD1T1Sh3_1FProv4xqk", "anonymity"=>1, "content"=>"お"}}
 ```
+
+
+## 検証動画
+ご注文はうさぎですか？？ OP sm27341580

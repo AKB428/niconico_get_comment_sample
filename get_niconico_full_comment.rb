@@ -4,6 +4,9 @@ require 'net/https'
 
 #https://gist.github.com/mpppk/118a3dcf93324429fb1e
 #ref http://blog.livedoor.jp/mgpn/archives/51886270.html
+#ref http://needtec.exblog.jp/21547762/
+#ref http://www.slideshare.net/masahiroh1/ss-24757915
+#vpos 1/100 秒
 
 class NicovideoAPIWrapper
 
@@ -154,7 +157,7 @@ class NicovideoAPIWrapper
 
     comments_info = []
 
-    (1..3).each do |num|
+    (1..loop_num).each do |num|
       next_when = nil
       puts 'loop=' + num.to_s + ' length=' + movie_info.length.to_s
       #p movie_info
