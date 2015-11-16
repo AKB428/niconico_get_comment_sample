@@ -87,6 +87,20 @@ class NicovideoAPIWrapper
   end
 
 
+  def get_thread_key()
+    host = 'flapi.nicovideo.jp'
+    path = "/api/getthreadkey?thread=#{@flv_info[:thread_id]}"
+    p path
+    response = Net::HTTP.new(host).start { |http|
+      request = Net::HTTP::Get.new(path)
+      request['cookie'] = "nicosid=#{@nicosid};user_session=#{@session_id};"
+      http.request(request)
+    }
+    p response.body
+    @thread_key = response.body
+  end
+
+
   # 与えられた動画IDの情報を返す
   def get_movie_info(movie_id)
     @flv_info       = get_flv_info(movie_id)
@@ -110,10 +124,9 @@ class NicovideoAPIWrapper
     thread_id      = @flv_info[:thread_id]
 
     host_info = msg_server_url.split('/')
-    p host_info
     host = host_info[2]
     root_path = host_info[3]
-    path = "/#{root_path}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}&when=#{when_time}&waybackkey=#{@wayback_key}"
+    path = "/#{root_path}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}&when=#{when_time}&waybackkey=#{@wayback_key}&scores=1&nicoru=1&#{@thread_key}&user_id=#{@flv_info[:user_id]}"
 
     p path
     response = Net::HTTP.new(host).start { |http|
@@ -129,6 +142,7 @@ class NicovideoAPIWrapper
   # 与えられた動画IDのコメント情報を返す
   def get_comments_info(movie_id)
     movie_info =  get_movie_info(movie_id)
+    get_thread_key()
 
     comment_num = movie_info[0]['thread']['last_res']
     p comment_num
@@ -140,9 +154,10 @@ class NicovideoAPIWrapper
 
     comments_info = []
 
-    (1..loop_num).each do |num|
+    (1..3).each do |num|
       next_when = nil
       puts 'loop=' + num.to_s + ' length=' + movie_info.length.to_s
+      #p movie_info
       movie_info.each do |v|
         #p v
         if next_when.nil? && v.has_key?("chat")
