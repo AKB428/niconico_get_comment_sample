@@ -110,7 +110,7 @@ class NicovideoAPIWrapper
     @flv_info       = get_flv_info(movie_id)
     puts "flv_info"
     p @flv_info
-    get_waybackkey(@flv_info[:optional_thread_id])
+    get_waybackkey(@flv_info[:thread_id])
     puts "wayback_key"
     p @wayback_key
     #exit
@@ -118,7 +118,7 @@ class NicovideoAPIWrapper
     get_thread_key()
     #p flv_info
     msg_server_url = URI.unescape( @flv_info[:ms] ).gsub("/api/", "")
-    thread_id      = @flv_info[:optional_thread_id]
+    thread_id      = @flv_info[:thread_id]
     movie_info_url = "#{msg_server_url}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}"
     p movie_info_url
     #JSON.load( open(movie_info_url).read )
@@ -143,7 +143,7 @@ class NicovideoAPIWrapper
   def get_movie_info_with_when(movie_id, when_time)
     #p flv_info
     msg_server_url = URI.unescape( @flv_info[:ms] ).gsub("/api/", "")
-    thread_id      = @flv_info[:optional_thread_id]
+    thread_id      = @flv_info[:thread_id]
 
     host_info = msg_server_url.split('/')
     host = host_info[2]
