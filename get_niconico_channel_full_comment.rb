@@ -110,25 +110,40 @@ class NicovideoAPIWrapper
     @flv_info       = get_flv_info(movie_id)
     puts "flv_info"
     p @flv_info
-    get_waybackkey(@flv_info[:thread_id])
+    get_waybackkey(@flv_info[:optional_thread_id])
     puts "wayback_key"
     p @wayback_key
     #exit
 
-
+    get_thread_key()
     #p flv_info
     msg_server_url = URI.unescape( @flv_info[:ms] ).gsub("/api/", "")
-    thread_id      = @flv_info[:thread_id]
+    thread_id      = @flv_info[:optional_thread_id]
     movie_info_url = "#{msg_server_url}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}"
     p movie_info_url
-    JSON.load( open(movie_info_url).read )
+    #JSON.load( open(movie_info_url).read )
+
+    host_info = msg_server_url.split('/')
+    host = host_info[2]
+    root_path = host_info[3]
+    path = "/#{root_path}/api.json/thread?version=20090904&thread=#{thread_id}&res_from=-#{COMMENT_MAX_NUM}&waybackkey=#{@wayback_key}&scores=1&nicoru=1&#{@thread_key}&user_id=#{@flv_info[:user_id]}"
+
+    puts "path"
+    p path
+    response = Net::HTTP.new(host).start { |http|
+      request = Net::HTTP::Get.new(path)
+      request['cookie'] = "user_session=#{@session_id};nicosid=#{@nicosid}"
+      http.request(request)
+    }
+
+    JSON.load(response.body)
   end
 
   # 与えられた動画IDの情報を返す
   def get_movie_info_with_when(movie_id, when_time)
     #p flv_info
     msg_server_url = URI.unescape( @flv_info[:ms] ).gsub("/api/", "")
-    thread_id      = @flv_info[:thread_id]
+    thread_id      = @flv_info[:optional_thread_id]
 
     host_info = msg_server_url.split('/')
     host = host_info[2]
@@ -148,9 +163,11 @@ class NicovideoAPIWrapper
 
   # 与えられた動画IDのコメント情報を返す
   def get_comments_info(movie_id)
+
     movie_info =  get_movie_info(movie_id)
-    get_thread_key()
+
     p movie_info
+    #[{"thread"=>{"resultcode"=>0, "thread"=>1447212382, "ticket"=>"", "revision"=>1, "server_time"=>1448133910}}, {"view_counter"=>{"video"=>386004, "id"=>"so27564939", "mylist"=>}}]
     comment_num = movie_info[0]['thread']['last_res']
     p comment_num
     loop_num = comment_num / COMMENT_MAX_NUM

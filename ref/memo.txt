@@ -1,0 +1,7 @@
+この方法は普通の動画のみ有効で公式配信されているアニメなど、公式関連の動画では以下の文字列をポストします。
+<thread res_from="-1000" version="20061206" thread="{0}"
+        threadkey="{1}" force_184="{2}" scores="1" />
+
+http://blog.livedoor.jp/mgpn/archives/51886270.html
+http://d.hatena.ne.jp/MineAP/20100819/1282201560
+http://d.hatena.ne.jp/MineAP/20100819/1282201560
