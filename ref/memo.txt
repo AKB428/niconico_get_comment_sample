@@ -5,3 +5,6 @@
 http://blog.livedoor.jp/mgpn/archives/51886270.html
 http://d.hatena.ne.jp/MineAP/20100819/1282201560
 http://d.hatena.ne.jp/MineAP/20100819/1282201560
+
+解析データ
+https://osdn.jp/projects/nicolib/wiki/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E8%A7%A3%E6%9E%90%E3%83%A1%E3%83%A2
