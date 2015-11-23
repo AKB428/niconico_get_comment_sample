@@ -1,0 +1,29 @@
+"done=true&
+thread_id=1448218801&
+ms=202.248.110.179&
+ms_port=2526&
+http_port=8081&
+channel_no=1&
+channel_name=NHK%20%E7%B7%8F%E5%90%88&
+genre_id=1&
+twitter_enabled=1&
+vip_follower_disabled=0&
+twitter_vip_mode_count=10000&
+twitter_hashtag=%23NHK&
+twitter_api_url=http%3A%2F%2Fjk.nicovideo.jp%2Fapi%2Fv2%2F
+&base_time=1448218801&
+open_time=1448218801&
+start_time=1448218801&
+end_time=1448266606&
+user_id=&
+is_premium=1&
+nickname="
+
+朝四時にリセット
+
+http://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E5%AE%9F%E6%B3%81
+
+
+</chat><chat thread="1448218803" no="53798" vpos="8133145" date="1448300131" mail="184" user_id="DG72KCSHiz-ZamD1M1R_TTXyAqw" anonymity="1">ニンジャ</chat><chat thread="1448218803" no="53799" vpos="8132973" date="1448300132" mail="184" user_id="MKirSN28OqBD-dZA50iVsJ77ZD8" premium="1" anonymity="1">どこが忍者やｗ</chat><chat thread="1448218803" no="53800" vpos="8133548" date="1448300136" mail="184" user_id="4E3lQpDMSZU8No10sA6INBUsaPI" anonymity="1">小人格闘術つえええな</chat><chat thread="1448218803" no="53801" vpos="8134162" date="1448300141" mail="184" user_id="DG72KCSHiz-ZamD1M1R_TTXyAqw" anonymity="1">かくにんじゃ</chat><chat thread="1448218803" no="53802" vpos="8136400" date="1448300144" mail="184" user_id="8eMAfksgy5Q63kw2NEEiFZ5LuSc" premium="1" anonymity="1">また忍者の熱い風情被害がｗ</chat><chat thread="1448218803" no="53803" vpos="8135799" date="1448300153" mail="184" user_id="1cf7bwP6kmsi9KRGXebY8-qNoHU" anonymity="1">何で時々日本が関わってるんだ？</chat><chat thread="1448218803" no="53804" vpos="8136809" date="1448300166" mail="184" user_id="cjnRKwXS8DLzBbtCOMslpCwkSlk" premium="1" anonymity="1">オースティンもそろそろ実況したいな</chat><chat thread="1448218803" no="53805" vpos="8136800" date="1448300169" mail="184" user_id="bHLNWXlOi-W05DNQzDkFBLupers" anonymity="1">日本流行ってた時期じゃね</chat><chat thread="1448218803" no="53806" vpos="8138310" date="1448300185" mail="184" user_id="MKirSN28OqBD-dZA50iVsJ77ZD8" premium="1" anonymity="1">これいつの映画だ</chat>
+Received 38 bytes
+<view_counter video="455109" id="4"/>
