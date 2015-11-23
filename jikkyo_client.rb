@@ -53,7 +53,17 @@ end
 
 class NicoNicoJikkyo
   def self.parse_chat(data)
-    puts data.delete("\x0")
+    r = {}
+    data.scan(/\w+="\w+/).each do |x|
+      #p x
+      unit = x.split('="')
+      r[unit[0]] = unit[1]
+    end
+    /<chat.+>(.+)<\/chat>/ =~ data
+    r['comment'] = $1
+    p r
+    puts $1
+    r
   end
 
   def self.parse_chat_with_thread(data)
