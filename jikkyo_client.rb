@@ -1,5 +1,7 @@
-require 'net/https'
 require 'eventmachine'
+
+require 'rexml/document'
+require 'pp'
 
 =begin
 
@@ -38,10 +40,26 @@ class Connector < EM::Connection
   #EMによって自動的に呼び出される
   def receive_data(data)
     puts "Received #{data.length} bytes"
-    p data
+    if data.start_with?('<chat')
+      NicoNicoJikkyo.parse_chat(data)
+    else
+      #別アプローチでパース
+      NicoNicoJikkyo.parse_chat_with_thread(data)
+    end
+    #"<chat thread=\"1448218807\" no=\"7365\" vpos=\"5353029\" date=\"1448272346\" mail=\"184\" user_id=\"shB9qSYGHbo32He0L596lP5w5NY\" anonymity=\"1\">\xE3\x81\x9B\xE3\x82\x84\xE3\x82\x8D\xE3\x81\x8B</chat>\x00"
   end
 end
 
+
+class NicoNicoJikkyo
+  def self.parse_chat(data)
+    puts data.delete("\x0")
+  end
+
+  def self.parse_chat_with_thread(data)
+    puts data.delete("\x0")
+  end
+end
 
 @hostname = ARGV[0]
 @port = ARGV[1].to_i
