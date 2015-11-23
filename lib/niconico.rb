@@ -2,8 +2,11 @@ require 'json'
 require 'open-uri'
 require 'net/https'
 
-class NicoNicoJikkyo
-  @flv_info = nil
+class NicoNico
+  attr_accessor :flv_info
+
+  #ref https://gist.github.com/mpppk/118a3dcf93324429fb1e
+  #ref http://blog.livedoor.jp/mgpn/archives/51886270.html
 
   def login(mail, password)
     #ログインを試みる
@@ -47,7 +50,7 @@ class NicoNicoJikkyo
   end
 
   # getflvから動画情報取得
-  def flvinfo(movie_id)
+  def get_flvinfo(movie_id)
 
     #http://jk.nicovideo.jp/api/getflv?v=
 
@@ -67,7 +70,9 @@ class NicoNicoJikkyo
     end
 
     @flv_info = flv_info
-
+    #puts @flv_info[:ms]
+    #puts @flv_info[:ms_port]
+    #puts @flv_info[:thread_id]
 =begin
       {:done=>"true",
        :thread_id=>"1448218801",
@@ -91,18 +96,17 @@ class NicoNicoJikkyo
        :nickname=>"" 実際の名前
       }
 =end
-
-    p @flv_info
   end
 
 end
 
 
 # main
-NICO_MAIL  = ARGV[0]
-NICO_PASS  = ARGV[1]
-MOVIE_ID   = ARGV[2]
+#NICO_MAIL  = ARGV[0]
+#NICO_PASS  = ARGV[1]
+#MOVIE_ID   = ARGV[2]
 
-nico = NicoNicoJikkyo.new
-nico.login(NICO_MAIL, NICO_PASS)
-nico.flvinfo(MOVIE_ID)
+#nico = NicoNicoJikkyo.new
+#nico.login(NICO_MAIL, NICO_PASS)
+#nico.flvinfo(MOVIE_ID)
+

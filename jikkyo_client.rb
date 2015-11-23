@@ -1,5 +1,6 @@
 require 'eventmachine'
 require 'csv'
+require './lib/niconico'
 
 =begin
 
@@ -115,9 +116,18 @@ class NicoNicoJikkyo
   end
 end
 
-hostname = ARGV[0]
-port = ARGV[1].to_i
-@@thread_id = ARGV[2].to_i
+# main
+NICO_MAIL  = ARGV[0]
+NICO_PASS  = ARGV[1]
+MOVIE_ID   = ARGV[2]
+
+nico = NicoNico.new
+nico.login(NICO_MAIL, NICO_PASS)
+nico.get_flvinfo(MOVIE_ID)
+
+hostname = nico.flv_info[:ms]
+port =  nico.flv_info[:ms_port]
+@@thread_id =  nico.flv_info[:thread_id]
 
 DST_DIR    = 'comments'
 Dir.mkdir(DST_DIR) unless File.exists?(DST_DIR)

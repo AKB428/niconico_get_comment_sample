@@ -61,9 +61,12 @@ http://com.nicovideo.jp/community/co1775865
 
 
 
-# ニコニコ実況 jikkyo_comment.rb
+# ニコニコ実況 jikkyo_client.rb
 
-作成中
+```
+bundle install
+bundle exec ruby jikkyo_client.rb user_email password jk1
+```
 
 http://jk.nicovideo.jp/
 
