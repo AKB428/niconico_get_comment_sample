@@ -28,7 +28,7 @@ APIを叩くならマナーとしてプレミアム会員になりましょう�
 * ご注文はうさぎですか？？ OP sm27341580
 * ご注文はうさぎですか？？ ED sm27341702
 
-## 公式チャンネル
+### 公式チャンネル
 
 ■ 課金動画でもコメントは無料で取得可能
 
@@ -41,4 +41,32 @@ http://ch.nicovideo.jp/gochiusa2
 * ご注文はうさぎですか？？ 5話 1447212383 [x]
 * ご注文はうさぎですか？？ 6話 1447818565 [x]
 
+http://ch.nicovideo.jp/gochiusa
 
+* ご注文はうさぎですか？ 1話 1397552685
+
+# ニコ生 live_comment.rb
+
+作成中
+
+#### チケット不要
+
+http://ch.nicovideo.jp/acaric-techtalk
+
+* アカリクvol7 lv241487902
+
+http://com.nicovideo.jp/community/co1775865
+
+* ひよとみさぎノ罪生放送 lv242664075
+
+
+
+# ニコニコ実況 jikkyo_comment.rb
+
+作成中
+
+http://jk.nicovideo.jp/
+
+チャンネル
+
+jk1, jk2, jk4–jk9
