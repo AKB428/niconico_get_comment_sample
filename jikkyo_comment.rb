@@ -69,9 +69,39 @@ class NicovideoAPIWrapper
       http.request(request)
     }
 
-    p response.body
+    flv_info = {}
+    response.body.split('&').each do |st|
+      stt = st.split('=')
+      flv_info[stt[0].to_sym] = URI.unescape(stt[1])
+    end
 
-    return response.body
+    @flv_info = flv_info
+
+=begin
+      {:done=>"true",
+       :thread_id=>"1448218801",
+       :ms=>"202.248.110.179",
+       :ms_port=>"2526",
+       :http_port=>"8081",
+       :channel_no=>"1",
+       :channel_name=>"NHK 総合",
+       :genre_id=>"1",
+       :twitter_enabled=>"1",
+       :vip_follower_disabled=>"0",
+       :twitter_vip_mode_count=>"10000",
+       :twitter_hashtag=>"#NHK",
+       :twitter_api_url=>"http://jk.nicovideo.jp/api/v2/",
+       :base_time=>"1448218801",
+       :open_time=>"1448218801", 2015年 11月23日 月曜日 04時00分01秒 JST
+       :start_time=>"1448218801",
+       :end_time=>"1448267811", 2015年 11月23日 月曜日 17時36分51秒 JST
+       :user_id=>"", 数値
+       :is_premium=>"1",
+       :nickname=>"" 実際の名前
+      }
+=end
+
+    p @flv_info
   end
 
   def get_waybackkey(thread_id)
