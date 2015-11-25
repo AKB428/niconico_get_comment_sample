@@ -47,6 +47,12 @@ class Connector < EM::Connection
   def receive_data(data)
     @counter = @counter + 1
     puts "Received #{data.length} bytes"
+
+    if data.start_with?('<leave_thread')
+      #TODO 朝４時近辺に切断される
+      EM.stop
+    end
+
     if data.start_with?('<chat')
       @comment_data.push(NicoNicoJikkyo.parse_chat(data))
     else
@@ -61,6 +67,11 @@ class Connector < EM::Connection
       @comment_data = []
     end
   end
+
+  #EMによって接続が切れた時に自動的に呼び出される
+  def unbind
+  end
+
 end
 
 
@@ -121,19 +132,25 @@ NICO_MAIL  = ARGV[0]
 NICO_PASS  = ARGV[1]
 MOVIE_ID   = ARGV[2]
 
-nico = NicoNico.new
-nico.login(NICO_MAIL, NICO_PASS)
-nico.get_flvinfo(MOVIE_ID)
-
-hostname = nico.flv_info[:ms]
-port =  nico.flv_info[:ms_port]
-@@thread_id =  nico.flv_info[:thread_id]
-
 DST_DIR    = 'comments'
 Dir.mkdir(DST_DIR) unless File.exists?(DST_DIR)
-time_st = Time.now.strftime("%Y%m%d-%H%M%S")
-@@filename = "#{DST_DIR}/#{@@thread_id}_#{time_st}_comments.tsv"
+
+
+def jk_init
+  puts '--------- INIT -----------'
+  nico = NicoNico.new
+  nico.login(NICO_MAIL, NICO_PASS)
+  nico.get_flvinfo(MOVIE_ID)
+
+  @hostname = nico.flv_info[:ms]
+  @port =  nico.flv_info[:ms_port]
+  @@thread_id =  nico.flv_info[:thread_id]
+
+  time_st = Time.now.strftime("%Y%m%d-%H%M%S")
+  @@filename = "#{DST_DIR}/#{@@thread_id}_#{time_st}_comments.tsv"
+end
 
 EM.run do
-  EM.connect(hostname, port, Connector)
+  jk_init
+  EM.connect(@hostname, @port, Connector)
 end

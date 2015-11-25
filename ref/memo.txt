@@ -12,3 +12,5 @@ https://osdn.jp/projects/nicolib/wiki/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E8%A7
 
 実況について
 http://dev.activebasic.com/egtra/2010/03/03/210/
+
+https://github.com/rutice/NicoJK/blob/master/NicoJK.cpp
