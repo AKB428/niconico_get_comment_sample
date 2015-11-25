@@ -64,6 +64,7 @@ http://com.nicovideo.jp/community/co1775865
 # ニコニコ実況 jikkyo_client.rb
 
 ```
+yum install gcc-c++
 bundle install
 bundle exec ruby jikkyo_client.rb user_email password jk1
 ```
