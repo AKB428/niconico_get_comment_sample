@@ -46,7 +46,7 @@ class Connector < EM::Connection
   #EMによって自動的に呼び出される
   def receive_data(data)
     @counter = @counter + 1
-    puts "Received #{data.length} bytes"
+    #puts "Received #{data.length} bytes"
 
     if data.start_with?('<leave_thread')
       #TODO 朝４時近辺に切断される
@@ -85,6 +85,8 @@ class NicoNicoJikkyo
     end
     /<chat.+>(.+)<\/chat>/ =~ data
     r['content'] = $1
+    print r['no']
+    print "\t"
     puts $1
     r
   end
