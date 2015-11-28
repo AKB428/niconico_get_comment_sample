@@ -2,7 +2,7 @@
 # ニコニコ動画のコメント取得ツール (Ruby)
 
 ```
-ruby get_niconico_full_comment.rb [user_mail_adress] [password] [動画のID]
+ruby movie_client.rb [user_mail_adress] [password] [動画のID]
 ```
 
 一部コメントはニコニコ会員じゃないと見れないようです。
@@ -28,7 +28,15 @@ APIを叩くならマナーとしてプレミアム会員になりましょう�
 * ご注文はうさぎですか？？ OP sm27341580
 * ご注文はうさぎですか？？ ED sm27341702
 
-### 公式チャンネル
+
+# 公式チャンネル
+
+# ニコ生 channel_client.rb
+
+```
+bundle exec ruby live_client.rb user_email password movie_id
+```
+
 
 ■ 課金動画でもコメントは無料で取得可能
 
@@ -47,7 +55,9 @@ http://ch.nicovideo.jp/gochiusa
 
 # ニコ生 live_client.rb
 
-作成中
+```
+bundle exec ruby live_client.rb user_email password lvXXXX
+```
 
 #### チケット不要
 
