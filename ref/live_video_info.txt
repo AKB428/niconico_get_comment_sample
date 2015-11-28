@@ -1,0 +1,105 @@
+getplayerstatus
+  stream
+    id => lv240821221
+    title => シュタインズ・ゲート 1話～9話
+    description => <b>第1話～第9話</b><br>ニコニコ生放送では<b>「シュタインズ・ゲート」</b>の一挙放送を行います。
+    provider_type => official
+    default_community
+    international => 1
+    is_owner => 0
+    owner_id => 394
+    owner_name
+    is_reserved => 0
+    is_niconico_enquete_enabled => 1
+    watch_count => 28736
+    comment_count => 19604
+    base_time => 1448699400
+    open_time => 1448699400
+    start_time => 1448701200
+    end_time => 1448715077
+    hqstream => 1
+    is_rerun_stream => 0
+    is_archiveplayserver => 1
+    bourbon_url => http://live.nicovideo.jp/gate/lv240821221?sec=nicolive_crowded&sub=watch_crowded_0_official_lv240821221_onair
+    full_video => http://live.nicovideo.jp/gate/lv240821221?sec=nicolive_crowded&sub=watch_crowded_0_official_lv240821221_onair
+    after_video
+    before_video
+    kickout_video => http://live.nicovideo.jp/gate/lv240821221?sec=nicolive_oidashi&sub=watchplayer_oidashialert_0_official_lv240821221_onair
+    twitter_tag => #steinsgate
+    danjo_comment_mode => 0
+    aspect => 16:9
+    infinity_mode => 0
+    archive => 0
+    press
+      display_lines => -1
+      display_time => -1
+      style_conf
+    plugin_delay
+    plugin_url
+    plugin_urls
+    allow_netduetto => 0
+    ng_scoring => 0
+    is_nonarchive_timeshift_enabled => 1
+    is_timeshift_reserved => 0
+    header_comment => 0
+    footer_comment => 0
+    split_bottom => 0
+    split_top => 0
+    background_comment => 0
+    font_scale
+    comment_lock => 0
+    telop
+      enable => 0
+    contents_list
+      contents => case:sp:akamai%3Artmp%3A%2F%2Fnlakmjpk.live.nicovideo.jp%3A1935%2Flive%2Cnlary_46%40s19220,mobile:akamai%3Artmp%3A%2F%2Fnlakmjpk.live.nicovideo.jp%3A1935%2Flive%2Cnlary_47%40s19221,premium:akamai%3Artmp%3A%2F%2Fnlakmjpk.live.nicovideo.jp%3A1935%2Flive%2Cnlary_47%40s19221,default:akamai%3Artmp%3A%2F%2Fnlakmjpk.live.nicovideo.jp%3A1935%2Flive%2Cnlary_46%40s19220
+    picture_url => http://nl.simg.jp/img/a221/660616.8a123a.jpg
+    thumb_url => http://nl.simg.jp/img/a221/660617.ffd9b6.jpg
+    is_priority_prefecture
+  user
+    user_id => '' #数値
+    nickname => '' #日本語
+    is_premium => 1
+    userAge => #数値
+    userSex => 1 #-->男
+    userDomain => jp
+    userPrefecture => 13
+    userLanguage => ja-jp
+    room_label => 2F中央 最前列
+    room_seetno => 472
+    is_join
+    twitter_info
+      status => enabled
+      screen_name => #Twitterアカウント
+      followers_count => #Twitterフォロワー数
+      is_vip => 0
+      profile_image_url =>
+      after_auth => 0
+      tweet_token =>
+  rtmp
+    url
+    ticket => 数値ユーザーID？:lv240821221:0:1448703363:8ee39f7514d6fd83
+  ms
+    addr => omsg106.live.nicovideo.jp
+    port => 2871
+    thread => 1477347840
+  tid_list
+  tickets
+    stream => auth=dbEcKcTb_aKcYbQcjcxauckbedGd4a9doa2-bwwxwd-frG-vga-CwDBAo_yxBxlD&aifp=0191210
+    stream => auth=dbEdTdZbcbsc5a.cjaIcMbfcyc.aoarbsaa-bwwxwd-frG-vga-BxzBzp_yEAxlD&aifp=0191210
+    stream => auth=dbEcTbKb8cFbLaddZdybHdVbydYbrbRaXdv-bwwxwd-frG-vga-BvEBxq_xEAymv&aifp=0191210
+  twitter
+    live_enabled => 1
+    vip_mode_count => 10000
+    live_api_url => http://watch.live.nicovideo.jp/api/
+  player
+    qos_analytics => 0
+    dialog_image
+      oidashi => http://nl.simg.jp/img/201311/281696.a29344.png
+    is_notice_viewer_balloon_enabled => 1
+    error_report => 1
+  marquee
+    category
+    game_key => 数値
+    game_time => 1448703363
+    force_nicowari_off => 1
+{}

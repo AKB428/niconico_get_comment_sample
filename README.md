@@ -45,7 +45,7 @@ http://ch.nicovideo.jp/gochiusa
 
 * ご注文はうさぎですか？ 1話 1397552685
 
-# ニコ生 live_comment.rb
+# ニコ生 live_client.rb
 
 作成中
 

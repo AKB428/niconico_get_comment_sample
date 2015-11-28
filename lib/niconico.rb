@@ -1,6 +1,9 @@
 require 'json'
 require 'open-uri'
 require 'net/https'
+require 'rexml/document'
+require 'active_support'
+require 'active_support/core_ext'
 
 class NicoNico
   attr_accessor :flv_info
@@ -98,15 +101,22 @@ class NicoNico
 =end
   end
 
+  # getplayerstatusから動画情報取得
+  # XML処理
+  # http://k-shogo.github.io/article/2013/09/03/ruby-xml/
+  def getplayerstatus(movie_id)
+    host = 'live.nicovideo.jp'
+    path = "/api/getplayerstatus/#{movie_id}"
+
+    response = Net::HTTP.new(host).start { |http|
+      request = Net::HTTP::Get.new(path)
+      request['cookie'] = "nicosid=#{@nicosid};user_session=#{@session_id};"
+      http.request(request)
+    }
+
+    doc = REXML::Document.new(response.body.strip)
+    Hash.from_xml(doc.to_s)
+  end
+
 end
-
-
-# main
-#NICO_MAIL  = ARGV[0]
-#NICO_PASS  = ARGV[1]
-#MOVIE_ID   = ARGV[2]
-
-#nico = NicoNicoJikkyo.new
-#nico.login(NICO_MAIL, NICO_PASS)
-#nico.flvinfo(MOVIE_ID)
 
