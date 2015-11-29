@@ -14,3 +14,11 @@ https://osdn.jp/projects/nicolib/wiki/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E8%A7
 http://dev.activebasic.com/egtra/2010/03/03/210/
 
 https://github.com/rutice/NicoJK/blob/master/NicoJK.cpp
+
+https://osdn.jp/projects/nicolib/wiki/NicoLiveAPI#h3-GetPlayerStatus
+
+http://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E7%94%9F%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%28%E6%9C%AC%E5%AE%B6%29%E3%81%AE%E4%BB%95%E6%A7%98
+
+http://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E7%94%9F%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%28%E6%9C%AC%E5%AE%B6%29%E3%81%AE%E4%BB%95%E6%A7%98
+
+http://live.nicovideo.jp/alert/

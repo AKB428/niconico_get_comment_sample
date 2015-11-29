@@ -133,6 +133,14 @@ def live_init
 
   pp info
 
+  if info['getplayerstatus'].key?('error')
+    #{"getplayerstatus"=>
+    # {"status"=>"fail", "time"=>"1448739659", "error"=>{"code"=>"closed"}}}
+    if info['getplayerstatus']['error']['code'] == 'closed'
+      puts "try wayback"
+    end
+  end
+
   hostname = info['getplayerstatus']['ms']['addr']
   port =  info['getplayerstatus']['ms']['port']
   thread_id = info['getplayerstatus']['ms']['thread']

@@ -118,5 +118,18 @@ class NicoNico
     Hash.from_xml(doc.to_s)
   end
 
+  def get_waybackkey(thread_id)
+    #http://watch.live.nicovideo.jp/api/getwaybackkey
+    host = 'watch.live.nicovideo.jp'
+    path = "/api/getwaybackkey?thread=#{thread_id}"
+    p path
+    response = Net::HTTP.new(host).start { |http|
+      request = Net::HTTP::Get.new(path)
+      request['cookie'] = "user_session=#{@session_id}"
+      http.request(request)
+    }
+    p response.body
+    @wayback_key = response.body.split('=')[1]
+  end
 end
 
