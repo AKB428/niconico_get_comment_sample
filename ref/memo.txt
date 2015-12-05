@@ -22,3 +22,16 @@ http://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E7%94%9F%E3%82%A2%E3%83%A9%E3%83%BC
 http://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E7%94%9F%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%88%28%E6%9C%AC%E5%AE%B6%29%E3%81%AE%E4%BB%95%E6%A7%98
 
 http://live.nicovideo.jp/alert/
+
+
+## ニコニコデータ サンプル
+
+```
+{"thread"=>{"resultcode"=>0, "thread"=>1444481838, "last_res"=>34314, "ticket"=>"0x8f887200", "revision"=>1681, "server_time"=>1447604264, "click_revision"=>100, "num_clicks"=>2}}
+{"leaf"=>{"thread"=>1444481838, "count"=>21988}}
+{"leaf"=>{"thread"=>1444481838, "leaf"=>1, "count"=>12326}}
+{"view_counter"=>{"video"=>905443, "id"=>"sm27341580", "mylist"=>16722}}
+{"chat"=>{"thread"=>1444481838, "no"=>33315, "vpos"=>8938, "date"=>1446732635, "mail"=>"pink 184", "user_id"=>"NWc5i7twOD1T1Sh3_1FProv4xqk", "anonymity"=>1, "leaf"=>1, "content"=>"さあ"}}
+{"chat"=>{"thread"=>1444481838, "no"=>33316, "vpos"=>502, "date"=>1446732644, "mail"=>"pink 184", "user_id"=>"NWc5i7twOD1T1Sh3_1FProv4xqk", "anonymity"=>1, "content"=>"お"}}
+```
+
