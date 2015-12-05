@@ -41,6 +41,8 @@ http://ch.nicovideo.jp/gochiusa
 ## ニコ生 live_client.rb
 
 ```
+yum install gcc-c++
+bundle install
 bundle exec ruby live_client.rb user_email password lvXXXX
 ```
 

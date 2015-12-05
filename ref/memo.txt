@@ -35,3 +35,16 @@ http://live.nicovideo.jp/alert/
 {"chat"=>{"thread"=>1444481838, "no"=>33316, "vpos"=>502, "date"=>1446732644, "mail"=>"pink 184", "user_id"=>"NWc5i7twOD1T1Sh3_1FProv4xqk", "anonymity"=>1, "content"=>"お"}}
 ```
 
+
+{"getplayerstatus"=>
+  {"status"=>"fail",
+   "time"=>"1449302482",
+   "error"=>{"code"=>"require_accept_print_timeshift_ticket"}}}
+
+   {"getplayerstatus"=>
+     {"status"=>"fail",
+      "time"=>"1449302805",
+      "error"=>{"code"=>"timeshift_ticket_expire"}}}
+
+      {"getplayerstatus"=>
+        {"status"=>"fail", "time"=>"1449302889", "error"=>{"code"=>"closed"}}}
