@@ -12,6 +12,8 @@ CREATE TABLE `comments` (
   `deleted` varchar(5),
   `content` varchar(255),
   KEY `comments_thread` (`thread`),
+  KEY `comments_no` (`no`),
+  KEY `comments_vpos` (`vpos`),
   KEY `comments_date` (`date`),
   KEY `comments_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
