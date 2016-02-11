@@ -75,14 +75,17 @@ jk1, jk2, jk4–jk9
 
 ### GoogleBigQueryとの連携
 
+#### ファイルをコピー
 ```
-gsutil -m cp comments/*.tsv gs://maki_v1/nico_comment/jk_comment_jk89_b211
+gsutil -m cp comments/*.tsv gs://nico_comment/jk_comment_jk89_b211
 ```
 
+#### テーブル定義
 ```
 thread: STRING ,no: STRING,vpos: STRING,date: STRING,mail: STRING,user_id: STRING,premium: STRING,anonymity: STRING,leaf: STRING,fork: STRING,deleted: STRING,content: STRING
 ```
 
+#### テーブルの型を変換
 ```
 SELECT
 INTEGER(thread) as thread,
@@ -99,3 +102,4 @@ deleted,
 content
 FROM [niconico_comment.jk8_9_bs211]
 ```
+
