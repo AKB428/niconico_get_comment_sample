@@ -94,12 +94,8 @@ INTEGER(vpos) as vpos,
 INTEGER(date) as date,
 mail,
 user_id,
-premium,
-anonymity,
-leaf,
-fork,
-deleted,
 content
-FROM [niconico_comment.jk8_9_bs211]
+FROM [niconico_comment.jk8_9_bs211C]
+
 ```
 
